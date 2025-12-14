@@ -66,9 +66,9 @@
     }
 
     .logo{
-      width:68px;
-      height:68px;
-      border-radius:16px;
+      width:82px;
+      height:82px;
+      border-radius:18px;
       display:grid;
       place-items:center;
       font-weight:900;
@@ -77,18 +77,18 @@
       color:#06121c;
       border:1px solid rgba(255,255,255,.18);
       box-shadow: 0 10px 26px rgba(0,0,0,.25);
-      font-size:30px; /* LT 字大啲 */
+      font-size:34px; /* LT 字大啲 */
     }
 
     .brand-text .company{
-      font-size:24px;
-      font-weight:700;
-      letter-spacing:.6px;
-      line-height:1.2;
+      font-size:34px;
+      font-weight:800;
+      letter-spacing:.7px;
+      line-height:1.15;
     }
     .brand-text .tagline{
       margin-top:6px;
-      font-size:13px;
+      font-size:14px;
       color:var(--muted);
       letter-spacing:.2px;
     }
@@ -117,9 +117,12 @@
       align-items:center;
       gap:10px;
       width:100%;
+      min-width:220px;
+      max-width:220px;
+      margin:0 auto;
       justify-content:center;
-      padding:12px 14px;
-      border-radius:14px;
+      padding:8px 12px;
+      border-radius:12px;
       background: rgba(255,255,255,.07);
       border: 1px solid rgba(255,255,255,.10);
       text-decoration:none;
@@ -314,10 +317,10 @@
     }
 
     .lb-img img{
-      max-width:100%;
-      max-height:100%;
+      max-width:92vw;
+      max-height:88vh;
       object-fit:contain;
-      border-radius: 14px;
+      transition: transform 0.25s ease;
     }
 
     .lb-x{
@@ -389,19 +392,21 @@
 
         <!-- 电话/Email 两行（有 SVG + 右边文字） -->
         <div class="contact">
-          <a class="contact-line" href="tel:+14158672783">
-            <img class="icon" src="icons/phone.svg" alt="Phone">
+          <!-- 📱 Phone → Messages -->
+          <a href="sms:+14158672783" class="contact-line phone">
+            <img src="icons/phone.svg" class="icon" alt="Phone">
             <div class="contact-text">
-              <div class="label">Phone</div>
-              <div class="value">(415) 867-2783</div>
+              <small>Phone</small>
+              <strong>(415) 867-2783</strong>
             </div>
           </a>
 
-          <a class="contact-line" href="mailto:tonylinsf@gmail.com">
-            <img class="icon" src="icons/email.svg" alt="Email">
+          <!-- 📧 Email → Mail App -->
+          <a href="mailto:tonylinsf@gmail.com" class="contact-line email">
+            <img src="icons/email.svg" class="icon" alt="Email">
             <div class="contact-text">
-              <div class="label">Email</div>
-              <div class="value">tonylinsf@gmail.com</div>
+              <small>Email</small>
+              <strong>tonylinsf@gmail.com</strong>
             </div>
           </a>
         </div>
@@ -413,7 +418,7 @@
       <!-- ===== INTRO ===== -->
       <div class="intro">
         <p class="zh">
-          专做浴室 / 厨房翻新及 ADU 加建，水电工程：拆旧、防水、贴砖、浴室柜/龙头、玻璃门安装。做事清晰、干净、准时，完工有验收清单。
+          专做浴室 / 厨房翻新及 ADU 加建，水电工程：拆旧、防水、贴砖、浴室柜/龙头、玻璃门窗安装。。
         </p>
         <p class="en">
           Kitchen &amp; Bath Remodeling · ADU Additions · Electrical · Plumbing · Tile · Painting · Window Replacement
@@ -594,6 +599,72 @@
     lbImg.addEventListener("error", ()=>{
       console.warn("Image not found:", lbImg.src);
     });
-  </script>
+ 
+    let currentIndex = 0;
+    let images = [];
+
+    // 打开 lightbox
+    document.querySelectorAll('.ph img').forEach((img, i) => {
+      images.push(img.src);
+
+      img.addEventListener('click', () => {
+        currentIndex = i;
+        openLB();
+      });
+    });
+
+    function openLB() {
+      document.getElementById('lb').style.display = 'flex';
+      document.getElementById('lbImg').src = images[currentIndex];
+    }
+
+    function closeLB() {
+      document.getElementById('lb').style.display = 'none';
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById('lbImg').src = images[currentIndex];
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      document.getElementById('lbImg').src = images[currentIndex];
+    }
+
+    // 按钮
+    document.getElementById('nextBtn').onclick = showNext;
+    document.getElementById('prevBtn').onclick = showPrev;
+
+    // 关闭
+    document.querySelectorAll('[data-close]').forEach(el =>
+      el.onclick = closeLB
+    );
+
+    // ⬅️➡️ 键盘
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'Escape') closeLB();
+    });
+
+    // 📱 手机滑动（重点）
+    let startX = 0;
+
+    const lbImg = document.getElementById('lbImg');
+
+    lbImg.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+    });
+
+    lbImg.addEventListener('touchend', e => {
+      let endX = e.changedTouches[0].clientX;
+      let diff = startX - endX;
+
+      if (Math.abs(diff) > 50) {
+        diff > 0 ? showNext() : showPrev();
+      }
+    });
+ </script>
 </body>
 </html>
