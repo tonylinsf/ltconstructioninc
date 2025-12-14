@@ -191,6 +191,66 @@
       opacity: .7;
       line-height: 1.3;
     }
+
+    /* 右上角联系方式：排整齐 */
+    .header-contact{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:6px;
+      min-width:220px;        /* 重点：俾够位，唔会逐字断行 */
+      text-align:right;
+      opacity:.9;
+    }
+
+    .header-contact .hc-name{
+      font-weight:700;
+      font-size:14px;
+      letter-spacing:.2px;
+      opacity:.95;
+    }
+
+    .contact-line{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:6px;
+      text-decoration:none;
+      color:rgba(255,255,255,.85);
+      font-size:11.5px;
+      opacity:.85;
+      line-height:1;
+      white-space:nowrap;     /* 重点：一行唔断开 */
+    }
+
+    .contact-line img{
+      width:18px;
+      height:18px;
+      opacity:.9;
+    }
+
+    .contact-line:hover{
+      color:#7dd3fc;          /* 淡蓝 */
+    }
+
+    .contact-line:hover img{
+      opacity:1;
+    }
+
+    /* 窄屏时自动收细 */
+    @media (max-width:640px){
+       .header-contact{
+         gap: 4px;
+       }
+       .contact-line span{display:none;}  /* 手机：只显示icon，保持清爽 */
+    }
+
+    .footer{
+      text-align:center;
+      font-size:12px;
+      color:rgba(255,255,255,.55);
+      margin-top:20px;
+    }
   </style>
 </head>
 
@@ -202,16 +262,25 @@
         <div class="brand">
           <div class="logo">TL</div>
           <div>
-            <div class="name">LT CONSTRUCTION INC（Tony Lin）</div>
+            <div class="name">LT CONSTRUCTION INC</div>
             <div class="tag">Bay Area · Kitchen & Bath Remodeling</div>
           </div>
         </div>
 
         <div class="actions">
           <!-- 🔧 改成你真实电话 / Email -->
-          <a class="btn primary" href="tel:+14158672783">📞 Call</a>
-          <a class="btn" href="sms:+14158672783">💬 Text</a>
-          <a class="btn" href="mailto:tonylinsf@gmail.com">✉️ Email</a>
+          <div class="header-contact">
+            <div class="name">Tony Lin</div>
+
+            <a class="contact-line" href="tel:14158672783">
+              <img src="icons/phone.svg" alt="Phone">
+              <span>(415) 867-2783</span>
+            </a>
+
+            <a class="contact-line" href="mailto:tonylinsf@gmail.com">
+              <img src="icons/email.svg" alt="Email">
+              <span>tonylinsf@gmail.com</span>
+            </a>
         </div>
       </div>
 
@@ -227,6 +296,7 @@
             Kitchen & Bath Remodeling · ADU Additions  
             Electrical · Plumbing · Tile · Painting · Window Replacement
           </span>
+          </div>
         </p>
 
         <div class="chips">
@@ -276,8 +346,10 @@
             <span class="view">View Gallery</span>
           </div>
         </div>
-        <div class="footer">© <span id="y"></span> © 2025 LT Construction Inc · SF Bay Area Licensed & Insured</div>
-      </div>
+        <div class="footer">
+          © 2025 LT Construction Inc · SF Bay Area · Licensed & Insured<br>
+          📞 (415) 867-2783 · ✉️ tonylinsf@gmail.com
+        </div>
     </div>
   </div>
 
