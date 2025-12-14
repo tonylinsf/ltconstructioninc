@@ -176,20 +176,23 @@
     }
 
     .bio{
-      line-height: 1.4;
+      margin-top: 14px;
+      line-height: 1.6;
     }
 
     .bio .zh{
       display: block;
-      font-size: 13px;
-      margin-bottom: 4px;   /* 🔥 控制中英距离 */
+      font-size: 14px;
+      color: #cfd6e4
+      margin-bottom: 10px;   /* 🔥 控制中英距离 */
     }
 
     .bio .en{
       display: block;
-      font-size: 12px;
-      opacity: .7;
-      line-height: 1.3;
+      font-size: 14px;
+      font-weight: 500;
+      color: #cfd6e4;
+      letter-spacing: 0.2px;
     }
 
     /* 右上角联系方式：排整齐 */
@@ -365,7 +368,8 @@
   </div>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    const y = document.getElementById("y");
+    if (y) y.textContent = new Date().getFullYear();
 
     const photos = {
        kitchen: [
