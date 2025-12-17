@@ -105,9 +105,9 @@
       display:flex;
       flex-direction:column;     /* ✅ 强制两行 */
       align-items:center;
-      gap:10px;
+      gap:8px;
       margin-top:4px;
-      margin-bottom:6px;
+      margin-bottom:4px;
       width:100%;
       max-width: 520px;
     }
@@ -121,7 +121,7 @@
       max-width:220px;
       margin:0 auto;
       justify-content:center;
-      padding:8px 12px;
+      padding:6px 12px;
       border-radius:12px;
       background: rgba(255,255,255,.07);
       border: 1px solid rgba(255,255,255,.10);
@@ -454,7 +454,7 @@
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:10px 14px;
+      padding:6px 10px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.06);
@@ -465,7 +465,20 @@
 
     .reviews-summary .score{ font-weight:800; font-size:18px; }
     .reviews-summary .stars{ letter-spacing:2px; }
-    .reviews-summary .count{ color:rgba(255,255,255,.70); font-size:14px; }
+    .reviews-summary .count{ color:rgba(255,255,255,.70); font-size:12px; }
+
+    .service-note {
+      margin: 6px auto 10px;
+      margin-top: 6px;
+      margin-bottom: 8px;
+      width:100%;
+      max-width: 520px;
+      font-size: 12.5px;
+      line-height: 1.4;
+      opacity: 0.8;
+      color: #f1f5f9(255,255,255,0.65);
+      text-align: center;
+    }
 
     /* ===== Responsive ===== */
     @media (max-width: 900px){
@@ -547,7 +560,11 @@
       </div>
 
       <div class="line"></div>
-
+      <p class="service-note">
+        LT Construction Inc focuses on construction and remodeling work. 
+        Design services and floor plans are provided by licensed designers or architects. 
+        We are happy to build based on approved plans supplied by the client.
+      </p>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSej1KbUSmW9cZ-xNftN_ZQSSErFlVgTDmH2QdR8tvA0gS4DuQ/viewform?usp=dialog"
          target="_blank" 
          class="review-btn"
